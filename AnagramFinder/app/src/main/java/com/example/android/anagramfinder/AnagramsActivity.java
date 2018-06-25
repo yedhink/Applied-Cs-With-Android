@@ -62,33 +62,57 @@ public class AnagramsActivity extends AppCompatActivity {
         }
 
     }
-
+    /*
+    method for displaying the output onto the screen.
+    we traverse the map in search of the user inputted word and fetch corresponding anagram(s)
+     */
     public void display(View V) {
         boolean foundAtLeastOneWord = false, flag = false;
 
+        /*
+        initially set textview to be null so as to not display anything
+        txv_display is the id given for that particular text view in the XML
+         */
         TextView displayView = (TextView) findViewById(R.id.txv_display);
         displayView.setText("");
 
+        // get user input and convert to lower case for conversion
         typeView = (EditText) findViewById(R.id.et_enter);
         String input = typeView.getText().toString().toLowerCase();
 
+        /*
+        the important part where we get the alphabetically sorted form the user input
+        so as to compare it with the values inside the keys file
+         */
         String sortedInput = getSorted(input);
 
+        // traverse through each line in the map
         for (Map.Entry<String, ArrayList<String>> entry : map.entrySet()) {
             key = entry.getKey();
+            // the value in the map is in ArrayList form
             ArrayList<String> valueList = entry.getValue();
+            // iterate through the ArrayList
             for (String val : valueList) {
+                // we dont want to redisplay the userinput as an anagram
                 if (sortedInput.equals(key) && !val.equalsIgnoreCase(input)) {
                     displayView.append(val + "\n");
                     foundAtLeastOneWord = true;
                 }
             }
         }
+
+        /*
+        case where no input is provided or no anagram is present for the word , but button was pressed
+         */
         if (input.matches("")) {
-            Toast.makeText(this, "You did not enter a username", Toast.LENGTH_SHORT).show();
-            flag = true;
-        } else if (foundAtLeastOneWord == false && !flag)
+            Toast.makeText(this, "You did not enter anything in the Text Field", Toast.LENGTH_SHORT).show();
+        }
+        else if (foundAtLeastOneWord == false)
             displayView.setText("No Anagram exist for this word");
+
+        /*
+        to hide the keyboard when the output is displayed
+         */
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
@@ -154,6 +178,9 @@ public class AnagramsActivity extends AppCompatActivity {
             return "Type Here";
         }
 
+        /*
+        publishProgress() would call this method which would display whats happening in background
+         */
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
@@ -166,11 +193,11 @@ public class AnagramsActivity extends AppCompatActivity {
             buttonFind.setClickable(false);
         }
 
-        @Override
         /*
         after everything is loaded give user ability to type again
         also set a hint inside the TextField inorder make users know where to type
          */
+        @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             typeView.setHint(result);
