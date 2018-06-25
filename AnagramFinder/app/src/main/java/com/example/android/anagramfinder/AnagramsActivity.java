@@ -74,7 +74,7 @@ public class AnagramsActivity extends AppCompatActivity {
     we traverse the map in search of the user inputted word and fetch corresponding anagram(s)
      */
     public void display(View V) {
-        boolean foundAtLeastOneWord = false, flag = false;
+        boolean foundAtLeastOneWord = false;
 
         /*
         initially set textview to be null so as to not display anything
