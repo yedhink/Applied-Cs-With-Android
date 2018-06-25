@@ -119,12 +119,15 @@ public class AnagramsActivity extends AppCompatActivity {
             map = new HashMap<>();
             try {
                 /*
-                create character stream for reading from the files as characters
+                create buffered character stream for reading from the files as characters
+                params are inputstreams of those files passed as parameters
                  */
                 BufferedReader keyDictionary = new BufferedReader(new InputStreamReader(params[0]));
                 BufferedReader wordsDictionary = new BufferedReader(new InputStreamReader(params[1]));
                 StringTokenizer t;
+                // calls onProgressUpdate() method and restricts the user from inputting till map has been loaded
                 publishProgress(1);
+                // start reading from both the files simultaneously since the respective key,value pairs will be on the same line
                 while (((key = keyDictionary.readLine()) != null) && (t = new StringTokenizer(wordsDictionary.readLine())) != null) {
                     anagramWords = new ArrayList<>();
                     word = "";
@@ -147,6 +150,7 @@ public class AnagramsActivity extends AppCompatActivity {
             } catch (IOException e) {
                 System.out.println("IOError");
             }
+            // give user control when the map is filled and ready
             return "Type Here";
         }
 
@@ -155,11 +159,18 @@ public class AnagramsActivity extends AppCompatActivity {
             super.onProgressUpdate(values);
             typeView.setHintTextColor(getResources().getColor(R.color.colorPrimaryDark));
             typeView.setHint("Loading...Please Wait");
+            /*
+            restrict user from typing inside the TextField
+             */
             typeView.setFocusable(false);
             buttonFind.setClickable(false);
         }
 
         @Override
+        /*
+        after everything is loaded give user ability to type again
+        also set a hint inside the TextField inorder make users know where to type
+         */
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             typeView.setHint(result);
