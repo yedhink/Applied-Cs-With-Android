@@ -52,4 +52,4 @@ Android Studio installed along with the following SDK tools
 3) Run it using an [Emulator/Phone](https://developer.android.com/training/basics/firstapp/running-app.html) to see the output
 
 ## License  
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/yedhink/AppliedCsWithAndroid/blob/master/LICENSE) file for details
+This project is licensed under the MIT License 
