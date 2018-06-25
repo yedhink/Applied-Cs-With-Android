@@ -115,7 +115,7 @@ public class AnagramsActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.no_text, Toast.LENGTH_SHORT).show();
         }
         else if (!foundAtLeastOneWord)
-            displayView.setText(R.string.no_anagram);
+            Toast.makeText(this, R.string.no_anagram, Toast.LENGTH_SHORT).show();
 
         /*
         to hide the keyboard when the output is displayed
@@ -125,7 +125,7 @@ public class AnagramsActivity extends AppCompatActivity {
             inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
         catch (NullPointerException e){
-            displayView.setText(R.string.nullExcep);
+            Toast.makeText(this, R.string.nullExcep, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -144,15 +144,16 @@ public class AnagramsActivity extends AppCompatActivity {
         return str;
     }
 
+    /*
+    perform our asynchronous task
+     */
     private class LongOperation extends AsyncTask<InputStream, Integer, String> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
 
-        /*
-        perform our asynchronous task
-         */
+        // populate the hash map in background
         @Override
         protected String doInBackground(InputStream... params) {
             map = new HashMap<>();
