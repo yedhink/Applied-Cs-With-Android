@@ -117,16 +117,19 @@ public class AnagramsActivity extends AppCompatActivity {
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
+    /*
+    Collator class is used to build searching and sorting routines for natural language text.
+    we split our string into character array. then we sort the char array and return it
+     */
     public String getSorted(String str) {
         Collator collator = Collator.getInstance(new Locale("fr", "FR"));
-        String original = str;
-        String[] split = original.split("");
+        String[] split = str.split("");
         Arrays.sort(split, collator);
         String sorted = "";
         for (int i = 0; i < split.length; i++) {
             sorted += split[i];
         }
-        original = null;
+        str = null;
         split = null;
         return sorted;
     }
