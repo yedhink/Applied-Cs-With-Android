@@ -145,7 +145,6 @@ public class AnagramsActivity extends AppCompatActivity {
     }
 
     private class LongOperation extends AsyncTask<InputStream, Integer, String> {
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -188,8 +187,8 @@ public class AnagramsActivity extends AppCompatActivity {
                      */
                     map.put(key, anagramWords);
                 }
-
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 System.out.println("IOError");
             }
             // give user control when the map is filled and ready
