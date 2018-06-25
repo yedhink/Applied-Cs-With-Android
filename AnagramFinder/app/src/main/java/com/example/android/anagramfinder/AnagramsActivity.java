@@ -34,6 +34,7 @@ public class AnagramsActivity extends AppCompatActivity {
     private AssetManager assetManager;
 
     @Override
+    //execution starts here
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anagrams);
