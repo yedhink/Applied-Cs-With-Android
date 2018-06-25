@@ -125,13 +125,11 @@ public class AnagramsActivity extends AppCompatActivity {
         Collator collator = Collator.getInstance(new Locale("fr", "FR"));
         String[] split = str.split("");
         Arrays.sort(split, collator);
-        String sorted = "";
+        str = "";
         for (int i = 0; i < split.length; i++) {
-            sorted += split[i];
+            str += split[i];
         }
-        str = null;
-        split = null;
-        return sorted;
+        return str;
     }
 
     private class LongOperation extends AsyncTask<InputStream, Integer, String> {
