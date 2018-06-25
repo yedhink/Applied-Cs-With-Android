@@ -43,9 +43,19 @@ public class AnagramsActivity extends AppCompatActivity {
             assetManager = getAssets();
             typeView = (EditText) findViewById(R.id.et_enter);
             buttonFind = (Button) findViewById(R.id.bt_find);
+            /* keys file consists of all the english words in sorted order
+            the values file consists of all the sorted anagrams possible for a particular key.
+            both keys and values are ordered sequentially such that the line number on which
+            a particular key is present will be the same line no at which the value will be
+            present in the values file.
+             */
             InputStream inputStreamKey = assetManager.open("keys");
             InputStream inputStreamValue = assetManager.open("values");
             assetManager = null;
+            /*invoke our asynchronous task
+              the params here are passed to the doInBackground() method
+
+             */
             new LongOperation().execute(inputStreamKey, inputStreamValue);
         } catch (IOException e) {
             Toast.makeText(this, "Could'nt load the files", Toast.LENGTH_SHORT).show();
@@ -108,6 +118,9 @@ public class AnagramsActivity extends AppCompatActivity {
         protected String doInBackground(InputStream... params) {
             map = new HashMap<>();
             try {
+                /*
+                create character stream for reading from the files as characters
+                 */
                 BufferedReader keyDictionary = new BufferedReader(new InputStreamReader(params[0]));
                 BufferedReader wordsDictionary = new BufferedReader(new InputStreamReader(params[1]));
                 StringTokenizer t;
@@ -115,10 +128,19 @@ public class AnagramsActivity extends AppCompatActivity {
                 while (((key = keyDictionary.readLine()) != null) && (t = new StringTokenizer(wordsDictionary.readLine())) != null) {
                     anagramWords = new ArrayList<>();
                     word = "";
+                    /*
+                    each value read from the values file may contain more than one word. i.e:- a key may have more than
+                    one anagram. so we read the values as tokens(basically splitting into different words) and store
+                    to an array.
+                     */
                     while (t.hasMoreTokens()) {
                         word = t.nextToken();
                         anagramWords.add(word);
                     }
+                    /*
+                    we store the key and values to a map where values are inside an ArrayList
+                    eg:- iceman : {cinema,anemic}
+                     */
                     map.put(key, anagramWords);
                 }
 
