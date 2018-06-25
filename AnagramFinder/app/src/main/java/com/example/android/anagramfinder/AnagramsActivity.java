@@ -106,14 +106,19 @@ public class AnagramsActivity extends AppCompatActivity {
         if (input.matches("")) {
             Toast.makeText(this, "You did not enter anything in the Text Field", Toast.LENGTH_SHORT).show();
         }
-        else if (foundAtLeastOneWord == false)
-            displayView.setText("No Anagram exist for this word");
+        else if (!foundAtLeastOneWord)
+            displayView.setText(R.string.no_anagram);
 
         /*
         to hide the keyboard when the output is displayed
          */
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        try{
+            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+        catch (NullPointerException e){
+            displayView.setText(R.string.nullExcep);
+        }
     }
 
     /*

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Anagram Finder</string>
+    <string name="no_anagram">No Anagram Exists</string>
+    <string name="nullExcep">NullPointerException for inputMethod()</string>
 </resources>
