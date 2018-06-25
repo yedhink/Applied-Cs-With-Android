@@ -40,9 +40,13 @@ public class AnagramsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_anagrams);
 
         try {
+            // gets reference to the files in assets dir
             assetManager = getAssets();
+
+            // basic object declaration
             typeView = (EditText) findViewById(R.id.et_enter);
             buttonFind = (Button) findViewById(R.id.bt_find);
+
             /* keys file consists of all the english words in sorted order
             the values file consists of all the sorted anagrams possible for a particular key.
             both keys and values are ordered sequentially such that the line number on which
@@ -52,15 +56,19 @@ public class AnagramsActivity extends AppCompatActivity {
             InputStream inputStreamKey = assetManager.open("keys");
             InputStream inputStreamValue = assetManager.open("values");
             assetManager = null;
-            /*invoke our asynchronous task
+
+            /*
+              invoke our asynchronous task.
               the params here are passed to the doInBackground() method
              */
             new LongOperation().execute(inputStreamKey, inputStreamValue);
-        } catch (IOException e) {
-            Toast.makeText(this, "Could'nt load the files", Toast.LENGTH_SHORT).show();
+        }
+        catch (IOException e) {
+            Toast.makeText(this, R.string.no_IO, Toast.LENGTH_SHORT).show();
         }
 
     }
+
     /*
     method for displaying the output onto the screen.
     we traverse the map in search of the user inputted word and fetch corresponding anagram(s)
@@ -104,7 +112,7 @@ public class AnagramsActivity extends AppCompatActivity {
         case where no input is provided or no anagram is present for the word , but button was pressed
          */
         if (input.matches("")) {
-            Toast.makeText(this, "You did not enter anything in the Text Field", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_text, Toast.LENGTH_SHORT).show();
         }
         else if (!foundAtLeastOneWord)
             displayView.setText(R.string.no_anagram);
