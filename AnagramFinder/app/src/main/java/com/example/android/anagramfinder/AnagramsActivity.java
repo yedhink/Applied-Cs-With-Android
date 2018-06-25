@@ -125,7 +125,7 @@ public class AnagramsActivity extends AppCompatActivity {
             inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
         catch (NullPointerException e){
-            Toast.makeText(this, R.string.nullExcep, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.null_excep, Toast.LENGTH_SHORT).show();
         }
     }
 
