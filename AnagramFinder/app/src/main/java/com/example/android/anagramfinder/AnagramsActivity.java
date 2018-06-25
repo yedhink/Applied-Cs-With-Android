@@ -54,7 +54,6 @@ public class AnagramsActivity extends AppCompatActivity {
             assetManager = null;
             /*invoke our asynchronous task
               the params here are passed to the doInBackground() method
-
              */
             new LongOperation().execute(inputStreamKey, inputStreamValue);
         } catch (IOException e) {
@@ -139,19 +138,24 @@ public class AnagramsActivity extends AppCompatActivity {
             super.onPreExecute();
         }
 
+        /*
+        perform our asynchronous task
+         */
         @Override
         protected String doInBackground(InputStream... params) {
             map = new HashMap<>();
             try {
                 /*
-                create buffered character stream for reading from the files as characters
+                create buffered character stream for reading from the key and values files as characters
                 params are inputstreams of those files passed as parameters
                  */
                 BufferedReader keyDictionary = new BufferedReader(new InputStreamReader(params[0]));
                 BufferedReader wordsDictionary = new BufferedReader(new InputStreamReader(params[1]));
                 StringTokenizer t;
+
                 // calls onProgressUpdate() method and restricts the user from inputting till map has been loaded
                 publishProgress(1);
+
                 // start reading from both the files simultaneously since the respective key,value pairs will be on the same line
                 while (((key = keyDictionary.readLine()) != null) && (t = new StringTokenizer(wordsDictionary.readLine())) != null) {
                     anagramWords = new ArrayList<>();
