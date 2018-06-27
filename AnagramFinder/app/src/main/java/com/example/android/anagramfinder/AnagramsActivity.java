@@ -247,10 +247,10 @@ public class AnagramsActivity extends AppCompatActivity {
 		protected String doInBackground(InputStream... params) {
 			map = new HashMap<>();
 			try {
-                /*
-                create buffered character stream for reading from the key and values files as characters
-                params are inputstreams of those files passed as parameters
-                 */
+					/*
+					create buffered character stream for reading from the key and values files as characters
+					params are inputstreams of those files passed as parameters
+					 */
 				BufferedReader keyDictionary = new BufferedReader(new InputStreamReader(params[0]));
 				BufferedReader wordsDictionary = new BufferedReader(new InputStreamReader(params[1]));
 				StringTokenizer t;
@@ -262,19 +262,19 @@ public class AnagramsActivity extends AppCompatActivity {
 				while (((key = keyDictionary.readLine()) != null) && (t = new StringTokenizer(wordsDictionary.readLine())) != null) {
 					anagramWords = new ArrayList<>();
 					word = "";
-                    /*
-                    each value read from the values file may contain more than one word. i.e:- a key may have more than
-                    one anagram. so we read the values as tokens(basically splitting into different words) and store
-                    to an array.
-                     */
+						/*
+						each value read from the values file may contain more than one word. i.e:- a key may have more than
+						one anagram. so we read the values as tokens(basically splitting into different words) and store
+						to an array.
+						 */
 					while (t.hasMoreTokens()) {
 						word = t.nextToken();
 						anagramWords.add(word);
 					}
-                    /*
-                    we store the key and values to a map where values are inside an ArrayList
-                    eg:- iceman : {cinema,anemic}
-                     */
+						/*
+						we store the key and values to a map where values are inside an ArrayList
+						eg:- iceman : {cinema,anemic}
+						 */
 					map.put(key, anagramWords);
 				}
 			} catch (IOException e) {
@@ -292,9 +292,9 @@ public class AnagramsActivity extends AppCompatActivity {
 			super.onProgressUpdate(values);
 			typeView.setHintTextColor(getResources().getColor(R.color.colorPrimaryDark));
 			typeView.setHint("Loading...Please Wait");
-            /*
-            restrict user from typing inside the EditText field
-             */
+				/*
+				restrict user from typing inside the EditText field
+				 */
 			typeView.setFocusable(false);
 			buttonFind.setClickable(false);
 		}
