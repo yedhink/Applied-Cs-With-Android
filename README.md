@@ -38,7 +38,7 @@ For example, the word "iceman" is an anagram of the word "cinema".
     |     └───────── Find angram for the given word.
     └─────────────── Works asynchronously.
 ```  
-![](https://imgur.com/8SJeIWg)
+![preview](https://i.imgur.com/8SJeIWg.gifv)
 
 # Prerequisites  
 Android Studio installed along with the following SDK tools
