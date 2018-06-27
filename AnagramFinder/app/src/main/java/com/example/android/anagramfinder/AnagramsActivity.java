@@ -48,23 +48,23 @@ public class AnagramsActivity extends AppCompatActivity {
 			typeView = (EditText) findViewById(R.id.et_enter);
 			buttonFind = (Button) findViewById(R.id.bt_find);
 
-				/*
-				"keys" file consists of all the english words in sorted order
-				the "values" file consists of all the sorted anagrams possible for a particular key.
-				both keys and values are ordered sequentially such that the line number on which
-				a particular key is present will be the same line no at which the value will be
-				present in the values file.
-				NOTE THAT CURRENTLY WE WILL ONLY BE ABLE TO FIND ANAGRAMS FOR WORDS OF MAX LENGTH OF 11
-				WE CAN ADD SUPPORT FOR MORE IF NECESSARY
-				 */
+			/*
+			"keys" file consists of all the english words in sorted order
+			the "values" file consists of all the sorted anagrams possible for a particular key.
+			both keys and values are ordered sequentially such that the line number on which
+			a particular key is present will be the same line no at which the value will be
+			present in the values file.
+			NOTE THAT CURRENTLY WE WILL ONLY BE ABLE TO FIND ANAGRAMS FOR WORDS OF MAX LENGTH OF 11
+			WE CAN ADD SUPPORT FOR MORE IF NECESSARY
+			 */
 			InputStream inputStreamKey = assetManager.open("keys");
 			InputStream inputStreamValue = assetManager.open("values");
 			assetManager = null;
 
-				/*
-				  invoke our asynchronous task for populating the hash map.
-				  the arguments from here are passed to the doInBackground() method inside it
-				 */
+			/*
+			  invoke our asynchronous task for populating the hash map.
+			  the arguments from here are passed to the doInBackground() method inside it
+			 */
 			new LongOperation().execute(inputStreamKey, inputStreamValue);
 
 			/*
