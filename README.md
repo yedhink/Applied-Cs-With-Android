@@ -37,7 +37,8 @@ For example, the word "iceman" is an anagram of the word "cinema".
     |     │    └──── Minimal UI.
     |     └───────── Find angram for the given word.
     └─────────────── Works asynchronously.
-```
+```  
+![](https://imgur.com/8SJeIWg)
 
 # Prerequisites  
 Android Studio installed along with the following SDK tools
