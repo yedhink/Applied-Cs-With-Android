@@ -47,7 +47,7 @@ Android Studio installed along with the following SDK tools
 
 # Installing
 1) Clone/Download the files into your local machine
-   > `git clone https://github.com/yedhink/AppliedCsWithAndroid.git`
+   > `https://github.com/yedhink/Applied-Cs-With-Android.git`
 2) Open the project in Android-Studio
 3) Run it using an [Emulator/Phone](https://developer.android.com/training/basics/firstapp/running-app.html) to see the output
 
