@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +29,7 @@ public class AnagramsActivity extends AppCompatActivity {
 	private ArrayList<String> anagramWords;
 	private String key, word;
 	private EditText typeView;
-	private Button buttonFind;
+	//private Button buttonFind;// was used before to find anagrams on click
 	private AssetManager assetManager;
 	private TextView displayView;
 
@@ -46,7 +45,7 @@ public class AnagramsActivity extends AppCompatActivity {
 
 			// basic object declaration
 			typeView = (EditText) findViewById(R.id.et_enter);
-			buttonFind = (Button) findViewById(R.id.bt_find);
+			//buttonFind = (Button) findViewById(R.id.bt_find);// was used before to find anagrams on click
 
 			/*
 			"keys" file consists of all the english words in sorted order
@@ -296,7 +295,7 @@ public class AnagramsActivity extends AppCompatActivity {
 			restrict user from typing inside the EditText field
 			*/
 			typeView.setFocusable(false);
-			buttonFind.setClickable(false);
+			//buttonFind.setClickable(false); // was used before to find anagrams on click
 		}
 
 		/*
@@ -308,7 +307,7 @@ public class AnagramsActivity extends AppCompatActivity {
 			super.onPostExecute(result);
 			typeView.setHint(result);
 			typeView.setFocusableInTouchMode(true);
-			buttonFind.setClickable(true);
+			//buttonFind.setClickable(true);// was used before to find anagrams on click
 		}
 	}
 }
