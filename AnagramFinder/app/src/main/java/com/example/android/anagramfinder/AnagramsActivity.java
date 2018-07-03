@@ -74,7 +74,6 @@ public class AnagramsActivity extends AppCompatActivity {
 		} catch (IOException e) {
 			Toast.makeText(this, R.string.no_IO, Toast.LENGTH_SHORT).show();
 		}
-
 	}
 
 	/*
@@ -131,7 +130,7 @@ public class AnagramsActivity extends AppCompatActivity {
 		public void afterTextChanged(Editable s) {
 			boolean foundAtLeastOneWord = false;
 			/*
-			the important part where we get the alphabetically sorted form of the user input,
+			the important part where we get the alphabetically sorted form of the user input
 			so as to compare it with the values inside the keys file
 			newstr is the changed user input.
 			 */
@@ -140,19 +139,15 @@ public class AnagramsActivity extends AppCompatActivity {
 			/*
 			we store the key and values to a hash map named map where values are inside an ArrayList
 			eg:- iceman : [cinema,anemic]
-			traverse through each line in the map
 			 */
-			for (Map.Entry<String, ArrayList<String>> entry : map.entrySet()) {
-				key = entry.getKey();
-				// the value in the map is in ArrayList form
-				ArrayList<String> valueList = entry.getValue();
-				// iterate through the ArrayList
+			ArrayList<String> valueList = map.get(sortedInput);
+			if(valueList!=null) {
 				for (String val : valueList) {
-					/*
-					check if the sorted user input exists as a key. ie:- whether the word has anagrams
-					also make sure that the user input is not redisplayed in output
-					 */
-					if (sortedInput.equals(key) && !val.equalsIgnoreCase(newStr)) {
+						/*
+						check if the sorted user input exists as a key. ie:- whether the word has anagrams
+						also make sure that the user input is not redisplayed in output
+						 */
+					if (!val.equalsIgnoreCase(newStr)) {
 						typeView.setTextColor(Color.GREEN);
 						displayView.append(val + "\n");
 						foundAtLeastOneWord = true;
@@ -168,69 +163,6 @@ public class AnagramsActivity extends AppCompatActivity {
 				typeView.setTextColor(Color.RED);
 		}
 	}
-
-	/*
-	i thought trying to perform the computation for finding the anagrams as an AsyncTask(so as to make
-	it faster) would work.
-	but the thing is calling an async task(in afterTextChanged() method of our TextWatcher) each time
-	an user changes text is not working out.
-	TRYING TO FIND A BETTER SOLUTION
-	*/
-	// ignore the whole code under async task written below.
-	private class fuzzyFind extends AsyncTask<String, Integer, String> {
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-		}
-
-		// populate the hash map in background
-		@Override
-		protected String doInBackground(String... params) {
-			/*
-			the important part where we get the alphabetically sorted form of the user input,
-			so as to compare it with the values inside the keys file
-			 */
-			boolean foundAtLeastOneWord = false;
-			String sortedInput = getSorted(params[0]);
-
-			// traverse through each line in the map
-			for (Map.Entry<String, ArrayList<String>> entry : map.entrySet()) {
-				key = entry.getKey();
-				// the value in the map is in ArrayList form
-				ArrayList<String> valueList = entry.getValue();
-				// iterate through the ArrayList
-				for (String val : valueList) {
-					/*
-					check if the sorted user input exists as a key. ie:- whether the word has anagrams
-					also make sure that the user input is not redisplayed in output
-					 */
-					if (sortedInput.equals(key) && !val.equalsIgnoreCase(params[0])) {
-						displayView.append(val + "\n");
-						foundAtLeastOneWord = true;
-					}
-				}
-			}
-
-			/*
-			case where no input is provided or no anagram is present for the word
-			*/
-			if (!foundAtLeastOneWord)
-				Toast.makeText(AnagramsActivity.this, R.string.no_anagram, Toast.LENGTH_SHORT).show();
-			// give user control when the map is filled and ready
-			return "Type Here";
-		}
-
-		@Override
-		protected void onProgressUpdate(Integer... values) {
-			super.onProgressUpdate(values);
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
-			super.onPostExecute(result);
-		}
-	}
-	// ignore the async task written above.
 
 	/*
 	perform our asynchronous task for populating the map
@@ -285,6 +217,7 @@ public class AnagramsActivity extends AppCompatActivity {
 
 		/*
 		publishProgress() would call this method which would display whats happening in background
+		disallow user from inputting till map is filled to avoid ambiguity
 		 */
 		@Override
 		protected void onProgressUpdate(Integer... values) {
