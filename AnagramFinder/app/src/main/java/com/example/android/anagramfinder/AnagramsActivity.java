@@ -45,7 +45,6 @@ public class AnagramsActivity extends AppCompatActivity {
 
 			// basic object declaration
 			typeView = (EditText) findViewById(R.id.et_enter);
-			//buttonFind = (Button) findViewById(R.id.bt_find);// was used before to find anagrams on click
 
 			/*
 			"keys" file consists of all the english words in sorted order
@@ -67,7 +66,7 @@ public class AnagramsActivity extends AppCompatActivity {
 			new LongOperation().execute(inputStreamKey, inputStreamValue);
 
 			/*
-			add a new listener which would check the user input change and fuzzy finds
+			add a new listener which would check for change in the user input and fuzzy finds
 			the corresponding anagrams of the user input if exists.
 			 */
 			typeView.addTextChangedListener(new CustomWatcher());
@@ -227,7 +226,6 @@ public class AnagramsActivity extends AppCompatActivity {
 			restrict user from typing inside the EditText field
 			*/
 			typeView.setFocusable(false);
-			//buttonFind.setClickable(false); // was used before to find anagrams on click
 		}
 
 		/*
@@ -239,7 +237,6 @@ public class AnagramsActivity extends AppCompatActivity {
 			super.onPostExecute(result);
 			typeView.setHint(result);
 			typeView.setFocusableInTouchMode(true);
-			//buttonFind.setClickable(true);// was used before to find anagrams on click
 		}
 	}
 }

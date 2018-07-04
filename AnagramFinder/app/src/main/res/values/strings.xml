@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Anagram Finder</string>
+    <string name="type_string">Type in a word to find its Anagrams</string>
     <string name="no_anagram">No Anagram Exists</string>
     <string name="null_excep">NullPointerException for inputMethod()</string>
     <string name="no_text">You did not enter anything in the Text Field</string>
