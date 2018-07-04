@@ -122,9 +122,7 @@ public class AnagramsActivity extends AppCompatActivity {
 		}
 
 		/*
-		currently we get the desired output, but the computation is really slow,
-		since it's performed each time the user enters a character.
-		TRYING TO FIND A BETTER SOLUTION
+		perform fuzzy searching
 		 */
 		@Override
 		public void afterTextChanged(Editable s) {
@@ -139,6 +137,7 @@ public class AnagramsActivity extends AppCompatActivity {
 			/*
 			we store the key and values to a hash map named map where values are inside an ArrayList
 			eg:- iceman : [cinema,anemic]
+			get values for the key(if sortedinput is present as a key) into an array
 			 */
 			ArrayList<String> valueList = map.get(sortedInput);
 			if(valueList!=null) {

@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context="com.example.android.anagramfinder.AnagramsActivity">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,12 +20,6 @@
         android:padding="16dp"
         android:textSize="14dp"
         android:singleLine="true"/>
-    <Button
-        android:id="@+id/bt_find"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Find"
-        android:layout_gravity="center"/>
 
     <ScrollView
         android:layout_width="match_parent"
